@@ -1,0 +1,36 @@
+---
+import { siteConfig } from "@public/data/site-config";
+import Circle from "../svg/blurry/circle.astro";
+import ProjectsGrid from "../projects-grid.astro";
+import ContentMaxWidth from "../ui/content-max-width.astro";
+import Paragraph from "../ui/paragraph.astro";
+import Section from "../ui/section.astro";
+import SubTitle from "../ui/sub-title.astro";
+
+const {
+  sections: {
+    projects: { data, info, title },
+  },
+  links: {
+    projects: { name },
+  },
+} = siteConfig;
+---
+
+<Section
+  pattern
+  className="relative overflow-hidden"
+  sectionId={name.toLocaleLowerCase()}
+>
+  <ContentMaxWidth>
+    <SubTitle className="text-left">{title}</SubTitle>
+    <Paragraph
+      className=" text-left md:text-left text-pretty first-letter:text-4xl first-letter:pr-1"
+    >
+      {info}
+    </Paragraph>
+    <ProjectsGrid data={data} />
+  </ContentMaxWidth>
+
+  <Circle className=" z-[-0] right-[0] translate-x-40 opacity-10 " />
+</Section>

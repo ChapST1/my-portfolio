@@ -1,0 +1,62 @@
+---
+import type { siteConfig } from "@public/data/site-config";
+import Badge from "./ui/badge.astro";
+import Paragraph from "./ui/paragraph.astro";
+import SubTitle from "./ui/sub-title.astro";
+
+interface Props {
+  data: (typeof siteConfig)["sections"]["workExperience"]["data"];
+}
+
+const { data } = Astro.props;
+---
+
+{
+  data.map(
+    ({ companyName, imageCompany, job, jobInfo, stack, time, companyLink }) => (
+      <div class="grid gap-4">
+        <article class="p-3 border-2 border-accent rounded-md">
+          <header class="flex gap-2 relative z-50">
+            <picture class="rounded-lg size-16 grid place-content-center border-2 border-accent">
+              <img
+                src={imageCompany}
+                alt={companyName}
+                class="w-full h-full rounded-lg object-cover"
+              />
+            </picture>
+
+            <div>
+              <SubTitle className="text-xl leading-none text-primary font-bold capitalize">
+                {job}
+              </SubTitle>
+              <a
+                href={companyLink}
+                target="_blank"
+                class="text-sm text-primary block hover:underline"
+              >
+                {companyName}
+              </a>
+              <Badge>{time}</Badge>
+            </div>
+          </header>
+
+          <div class="py-2">
+            <Paragraph className="text-sm">{jobInfo}</Paragraph>
+
+            <div class="flex flex-col gap-2 pt-3">
+              <SubTitle className="text-md text-primary font-semibold capitalize">
+                {stack?.title}
+              </SubTitle>
+
+              <div class="flex items-center justify-start gap-2">
+                {stack.data.map((item) => {
+                  return <Badge>{item}</Badge>;
+                })}
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    ),
+  )
+}

@@ -1,0 +1,17 @@
+---
+import { siteConfig } from "@public/data/site-config";
+
+const { socialMedia } = siteConfig;
+---
+
+<Fragment>
+  {
+    socialMedia.map(({ name, link, icon }) => {
+      return (
+        <a href={link} target="_blank" class="*:size-5" title={name}>
+          <Fragment set:html={icon} />
+        </a>
+      );
+    })
+  }
+</Fragment>

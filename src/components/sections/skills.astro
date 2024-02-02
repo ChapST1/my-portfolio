@@ -1,0 +1,33 @@
+---
+import { siteConfig } from "@public/data/site-config";
+import SkillsGrid from "../skills-grid.astro";
+import ContentMaxWidth from "../ui/content-max-width.astro";
+import Paragraph from "../ui/paragraph.astro";
+import Section from "../ui/section.astro";
+import SubTitle from "../ui/sub-title.astro";
+import CurveBlurry from "@components/svg/blurry/curve.astro";
+
+const {
+  sections: {
+    skills: { data, info, title },
+  },
+  links: {
+    skills: { name },
+  },
+} = siteConfig;
+---
+
+<Section
+  className="relative overflow-hidden"
+  sectionId={name.toLocaleLowerCase()}
+>
+  <ContentMaxWidth className="relative z-40">
+    <SubTitle className="">{title}</SubTitle>
+    <Paragraph className=" first-letter:text-4xl first-letter:pr-1">
+      {info}
+    </Paragraph>
+    <SkillsGrid data={data} />
+  </ContentMaxWidth>
+
+  <CurveBlurry />
+</Section>

@@ -1,0 +1,35 @@
+---
+import { twMerge, type ClassNameValue } from "tailwind-merge";
+interface Props {
+  className?: ClassNameValue;
+}
+
+const { className } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 800 400"
+  class={`${twMerge(
+    "absolute opacity-40 scale-150 top-[50%] right-20 -z-[0] blur-[30px] translate-y-[-50%] w-[500px]",
+    className,
+  )}`}
+  ><path
+    d="M678.475341796875,146.18833923339844C678.475341796875,146.18833923339844,616.5919189453125,313.0044860839844,616.5919189453125,313.0044860839844C616.5919189453125,313.0044860839844,547.5336303710938,154.2600860595703,547.5336303710938,154.2600860595703C547.5336303710938,154.2600860595703,435.4259948730469,269.05828857421875,435.4259948730469,269.05828857421875C435.4259948730469,269.05828857421875,266.8161315917969,155.15695190429688,266.8161315917969,155.15695190429688C266.8161315917969,155.15695190429688,68.60986328125,363.22869873046875,68.60986328125,363.22869873046875"
+    fill="none"
+    stroke-width="18"
+    stroke='url("#SvgjsLinearGradient1000")'
+    stroke-linecap="round"
+    stroke-dasharray="26 0"
+    stroke-opacity="1"></path><defs
+    ><linearGradient
+      id="SvgjsLinearGradient1000"
+      gradientTransform="rotate(20, 0.5, 0.5)"
+      ><stop stop-color="1e2529" offset="0"></stop><stop
+        stop-color="#c5e1ff"
+        offset="1"></stop></linearGradient
+    ></defs
+  ></svg
+>

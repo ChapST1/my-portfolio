@@ -1,0 +1,71 @@
+---
+import Circle from "../svg/blurry/circle.astro";
+import Paragraph from "../ui/paragraph.astro";
+import Section from "../ui/section.astro";
+import { siteConfig } from "@public/data/site-config";
+
+const {
+  links: {
+    home: { name },
+  },
+  cvLink,
+  cvTitle,
+  owner,
+  ownerInfo,
+} = siteConfig;
+---
+
+<Section
+  className="w-full h-[calc(100dvh-64px)] flex items-center justify-center z-10 overflow-hidden"
+  pattern={true}
+  sectionId={name.toLocaleLowerCase()}
+>
+  <a
+    href={cvLink}
+    target="_blank"
+    class="flex flex-col items-center justify-center gap-6 relative z-10"
+  >
+    <h2 class="uppercase text-4xl md:text-8xl title-shadow font-semibold pl-1">
+      {owner}
+    </h2>
+
+    <Paragraph
+      className="text-base text-pretty md:text-xl md:w-3/4 text-center"
+    >
+      {ownerInfo}
+    </Paragraph>
+
+    <button
+      class="group relative inline-flex px-4 py-2 items-center justify-center overflow-hidden rounded-md bg-transparent border border-primary/30 font-medium text-primary/80 transition hover:scale-105"
+      ><span>{cvTitle}</span><div
+        class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]"
+      >
+        <div class="relative h-full w-8 bg-white/10"></div>
+      </div></button
+    >
+  </a>
+
+  <Circle className=" scale-100 md:scale-50 md:opacity-10" />
+</Section>
+
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer utilities {
+    .title-shadow {
+      letter-spacing: 5px;
+      @apply text-primary;
+      text-shadow: 0 0 10px #bde6fb7e;
+
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: var(--primary);
+    }
+    @media (min-width: 768px) {
+      .title-shadow {
+        letter-spacing: 15px;
+      }
+    }
+  }
+</style>
