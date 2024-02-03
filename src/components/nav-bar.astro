@@ -1,15 +1,31 @@
 ---
 import { siteConfig } from "@public/data/site-config";
+import { icons } from "@public/data/site.icons";
 
 const { ownerLogo, links } = siteConfig;
+const {
+  menu: { icon },
+} = icons;
 ---
 
-<header
-  class="py-3 md:py-0 md:h-16 w-full md:w-3/4 md:border-2 md:border-accent rounded-md m-auto flex gap-2 flex-col md:flex-row items-center justify-between px-4 bg-secondary/50 sticky bottom-0 md:bottom-6 left-0 backdrop-blur-md z-[1000]"
->
-  <h1 class="text-2xl font-semibold text-primary">{ownerLogo}</h1>
+<input type="checkbox" id="menu" class="hidden" />
 
-  <ul class="gap-3 flex">
+<header
+  class="py-3 h-16 border-t-2 flex items-center justify-between border-accent overflow-hidden backdrop-blur-sm duration-200 ease-out md:py-0 md:h-16 w-full md:w-3/4 md:border-2 rounded-md m-auto px-4 md:flex md:justify-between md:items-center bg-secondary/50 sticky bottom-0 md:bottom-6 left-0 md:backdrop-blur-md z-[1000]"
+>
+  <div class="flex flex-1 gap-2 md:flex-row items-center justify-between">
+    <h1 class="text-2xl font-semibold text-primary">{ownerLogo}</h1>
+
+    <!-- Navbar-mobile -->
+
+    <label
+      for="menu"
+      class="size-12 rounded-full flex items-center justify-center border-2 border-accent text-paragraph *:size-8 md:hidden"
+      set:html={icon}
+    />
+  </div>
+
+  <ul class="">
     {
       Object.keys(links).map((item) => {
         //@ts-ignore
@@ -39,7 +55,35 @@ const { ownerLogo, links } = siteConfig;
     );
     background-size: 4px 4px;
   }
+
   h1 {
     text-shadow: 0 0 10px rgba(197, 225, 255, 0.637);
+  }
+
+  #menu:checked ~ header {
+    height: 500px;
+    display: block;
+  }
+
+  #menu:checked ~ header div label {
+    @apply border-primary rotate-90 text-primary;
+  }
+
+  header ul {
+    @apply hidden md:flex md:gap-4;
+  }
+
+  #menu:checked ~ header ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @apply gap-8;
+
+    & li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 </style>
