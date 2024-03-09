@@ -31,7 +31,8 @@ export const siteConfig = {
   de usuario atractivas e intuitivas 💅.
   `,
 	cvTitle: "Ver CV",
-	cvLink: "https://mi-cv-xi.vercel.app/",
+	cvLink:
+		"https://docs.google.com/document/d/1pFmklB7zJIph55Wmlb434Vdi69xpa7G2DftrnsZxBgs/edit?usp=sharing",
 
 	socialMedia: [
 		{
