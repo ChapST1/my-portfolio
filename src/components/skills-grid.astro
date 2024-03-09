@@ -23,7 +23,7 @@ const keys = Object.keys(data) as Array<keyof typeof data>
           {
             skillData.map((item) => {
               const {name, icon, isLearning } = item;
-              const skillName = `${name} ${isLearning ? "( aprendiendo )" : ""}`;
+              const skillName = `${name} ${isLearning ? "- aprendiendo" : ""}`;
               
               return (
                 <>
@@ -32,7 +32,7 @@ const keys = Object.keys(data) as Array<keyof typeof data>
                       set:html={icon}
                       class="flex flex-col items-center justify-center gap-3"
                     />
-                    <p>{skillName}</p>
+                    <p class="text-center text-xs md:text-base">{skillName}</p>
                   </article>
                 </>
               );
