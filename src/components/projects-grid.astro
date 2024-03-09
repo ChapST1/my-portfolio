@@ -13,11 +13,14 @@ const { data } = Astro.props;
 
 <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
   {
-    data.map(({ image, name, stack, info, demo, repo }) => {
+    data.map(({ image, name, stack, info, demo, repo, completed }) => {
+      const projectStatus = completed ? "Completado" : "En desarrollo"
+      const projectStatusStyle = completed ? "bg-[#053318] text-[#45d174]" : "bg-[#331d00] text-[#ff9e00]"
+
       return (
         <article class="p-4 rounded-md bg-secondary/80 border-2 border-accent group">
           <picture class="relative block overflow-hidden rounded-md bg-secondary">
-            <img src={image} alt={name} class="mix-blend-exclusion" />
+            <img src={image} alt={name} class="mix-blend-exclusion"  />
 
             <footer class="bg-secondary/75 w-full absolute duration-300 top-0 h-full opacity-0 group-hover:opacity-100 left-0 flex items-center justify-center gap-3 *:size-11 *:flex *:items-center *:justify-center *:rounded-md *:border-2 *:border-accent hover:*:border-primary hover:*:scale-105 *:duration-300">
               {repo && (
@@ -37,7 +40,10 @@ const { data } = Astro.props;
             </footer>
           </picture>
           <div class="py-3">
-            <h3 class="font-bold">{name}</h3>
+            <h3 class="font-bold flex gap-2 py-2 items-center justify-start">
+              <span>{name}</span>
+              <Badge className={`text-xs rounded-full ${projectStatusStyle}`}>{projectStatus}</Badge>
+              </h3>
 
             <Paragraph>{info}</Paragraph>
           </div>
