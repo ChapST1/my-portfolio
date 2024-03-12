@@ -21,6 +21,7 @@ export const siteConfig = {
 	},
 	owner: "Christian",
 	ownerLogo: "ChapST1",
+	ownerGithub: "https://github.com/ChapST1?tab=repositories",
 	ownerInfo: `
   👋 Hola! Soy Christian, un desarrollador front-end en busca de 
   experiencia laboral. Me apasiona el desarrollo web y estoy motivado

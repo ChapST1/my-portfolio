@@ -6,6 +6,7 @@ import ContentMaxWidth from "../ui/content-max-width.astro";
 import Paragraph from "../ui/paragraph.astro";
 import Section from "../ui/section.astro";
 import SubTitle from "../ui/sub-title.astro";
+import { icons } from "@public/data/site.icons";
 
 const {
   sections: {
@@ -14,6 +15,7 @@ const {
   links: {
     projects: { name },
   },
+  ownerGithub
 } = siteConfig;
 ---
 
@@ -30,6 +32,11 @@ const {
       {info}
     </Paragraph>
     <ProjectsGrid data={data} />
+
+    <a href={ownerGithub} target="_blank" class="bg-accent w-[max-content] rounded-md py-2 px-4 flex items-center justify-center gap-2 hover:scale-105 duration-300 my-2 mx-auto border-2  border-transparent hover:border-primary" >
+      <span set:html={icons.github.icon} class="*:size-6"/>
+      Ver todos
+    </a>
   </ContentMaxWidth>
 
   <Circle className=" z-[-0] right-[0] translate-x-40 opacity-10 " />
