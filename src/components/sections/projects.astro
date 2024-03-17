@@ -1,43 +1,43 @@
 ---
 import { siteConfig } from "@public/data/site-config";
-import Circle from "../svg/blurry/circle.astro";
+import { icons } from "@public/data/site.icons";
 import ProjectsGrid from "../projects-grid.astro";
+import Circle from "../svg/blurry/circle.astro";
 import ContentMaxWidth from "../ui/content-max-width.astro";
 import Paragraph from "../ui/paragraph.astro";
 import Section from "../ui/section.astro";
 import SubTitle from "../ui/sub-title.astro";
-import { icons } from "@public/data/site.icons";
 
 const {
-  sections: {
-    projects: { data, info, title },
-  },
-  links: {
-    projects: { name },
-  },
-  ownerGithub
+	sections: {
+		projects: { data, info, title },
+	},
+	links: {
+		projects: { name },
+	},
+	ownerGithub,
 } = siteConfig;
 ---
 
-<Section
-  pattern
-  className="relative overflow-hidden"
-  sectionId={name.toLocaleLowerCase()}
->
-  <ContentMaxWidth>
-    <SubTitle className="text-left">{title}</SubTitle>
-    <Paragraph
-      className=" text-left md:text-left text-pretty first-letter:text-4xl first-letter:pr-1"
-    >
-      {info}
-    </Paragraph>
-    <ProjectsGrid data={data} />
+<Section pattern className="relative overflow-hidden" sectionId={name.toLocaleLowerCase()}>
+	<ContentMaxWidth>
+		<SubTitle className="text-left">{title}</SubTitle>
+		<Paragraph
+			className=" text-pretty text-left first-letter:pr-1 first-letter:text-4xl md:text-left"
+		>
+			{info}
+		</Paragraph>
+		<ProjectsGrid data={data} />
 
-    <a href={ownerGithub} target="_blank" class="bg-accent w-[max-content] rounded-md py-2 px-4 flex items-center justify-center gap-2 hover:scale-105 duration-300 my-2 mx-auto border-2  border-transparent hover:border-primary" >
-      <span set:html={icons.github.icon} class="*:size-6"/>
-      Ver todos
-    </a>
-  </ContentMaxWidth>
+		<a
+			href={ownerGithub}
+			target="_blank"
+			class="mx-auto my-2 flex w-[max-content] items-center justify-center gap-2 rounded-md border-2 border-transparent bg-accent px-4 py-2 duration-300 hover:scale-105 hover:border-primary"
+		>
+			<span set:html={icons.github.icon} class="*:size-6" />
+			Ver todos
+		</a>
+	</ContentMaxWidth>
 
-  <Circle className=" z-[-0] right-[0] translate-x-40 opacity-10 " />
+	<Circle className=" right-[0] z-[-0] translate-x-40 opacity-10 " />
 </Section>

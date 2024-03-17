@@ -2,16 +2,11 @@
 import { twMerge, type ClassNameValue } from "tailwind-merge";
 
 interface Props {
-  className?: ClassNameValue;
+	className?: ClassNameValue;
 }
 const { className } = Astro.props;
 ---
 
-<article
-  class={`${twMerge(
-    "w-full flex flex-col gap-5 py-4 md:w-[750px] md:m-auto",
-    className,
-  )}`}
->
-  <slot />
+<article class={`${twMerge("w-full flex flex-col gap-5 py-4 md:w-[750px] md:m-auto", className)}`}>
+	<slot />
 </article>

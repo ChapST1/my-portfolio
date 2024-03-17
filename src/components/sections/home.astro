@@ -1,80 +1,78 @@
 ---
+import { siteConfig } from "@public/data/site-config";
 import Circle from "../svg/blurry/circle.astro";
 import Paragraph from "../ui/paragraph.astro";
 import Section from "../ui/section.astro";
-import { siteConfig } from "@public/data/site-config";
 
 const {
-  links: {
-    home: { name },
-  },
-  cvLink,
-  cvTitle,
-  owner,
-  ownerInfo,
+	links: {
+		home: { name },
+	},
+	cvLink,
+	cvTitle,
+	owner,
+	ownerInfo,
 } = siteConfig;
 ---
 
 <Section
-  className="w-full h-[calc(100dvh-64px)] flex items-center justify-center z-10 overflow-hidden"
-  pattern={true}
-  sectionId={name.toLocaleLowerCase()}
+	className="z-10 flex h-[calc(100dvh-64px)] w-full items-center justify-center overflow-hidden"
+	pattern={true}
+	sectionId={name.toLocaleLowerCase()}
 >
-  <div class="flex flex-col items-center justify-center gap-6 relative z-10">
-    <h2 class="uppercase text-4xl md:text-8xl title-shadow font-semibold pl-1">
-      {owner}
-    </h2>
+	<div class="relative z-10 flex flex-col items-center justify-center gap-6">
+		<h2 class="title-shadow pl-1 text-4xl font-semibold uppercase md:text-8xl">
+			{owner}
+		</h2>
 
-    <Paragraph
-      className="text-base text-pretty md:text-xl md:w-3/4 text-center"
-    >
-      {ownerInfo}
-    </Paragraph>
+		<Paragraph className="text-pretty text-center text-base md:w-3/4 md:text-xl">
+			{ownerInfo}
+		</Paragraph>
 
-    <a
-      href={cvLink}
-      target="_blank"
-      class="group relative inline-flex duration-300 h-12 items-center justify-center overflow-hidden rounded-md bg-transparent border-2 border-primary/25 hover:border-primary px-6 font-medium text-paragraph hover:text-white"
-      ><span>{cvTitle}</span><div
-        class="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100"
-      >
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 15 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          ><path
-            d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-            fill="currentColor"
-            fill-rule="evenodd"
-            clip-rule="evenodd"></path></svg
-        >
-      </div></a
-    >
-  </div>
-  <Circle className=" scale-100 md:scale-50 md:opacity-10" />
+		<a
+			href={cvLink}
+			target="_blank"
+			class="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border-2 border-primary/25 bg-transparent px-6 font-medium text-paragraph duration-300 hover:border-primary hover:text-white"
+			><span>{cvTitle}</span><div
+				class="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-1 group-hover:opacity-100"
+			>
+				<svg
+					width="15"
+					height="15"
+					viewBox="0 0 15 15"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-5 w-5"
+					><path
+						d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
+						fill="currentColor"
+						fill-rule="evenodd"
+						clip-rule="evenodd"></path></svg
+				>
+			</div></a
+		>
+	</div>
+	<Circle className=" scale-100 md:scale-50 md:opacity-10" />
 </Section>
 
 <style>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 
-  @layer utilities {
-    .title-shadow {
-      letter-spacing: 5px;
-      @apply text-primary;
-      text-shadow: 0 0 10px #bde6fb7e;
+	@layer utilities {
+		.title-shadow {
+			letter-spacing: 5px;
+			@apply text-primary;
+			text-shadow: 0 0 10px #bde6fb7e;
 
-      /* -webkit-text-stroke-width: 2px;
+			/* -webkit-text-stroke-width: 2px;
       -webkit-text-stroke-color: var(--primary); */
-    }
-    @media (min-width: 768px) {
-      .title-shadow {
-        letter-spacing: 15px;
-      }
-    }
-  }
+		}
+		@media (min-width: 768px) {
+			.title-shadow {
+				letter-spacing: 15px;
+			}
+		}
+	}
 </style>

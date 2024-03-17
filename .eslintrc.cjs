@@ -51,6 +51,8 @@ module.exports = {
 		"object-curly-spacing": ["warn", "always"],
 		"array-element-newline": ["warn", "consistent"],
 		"array-bracket-newline": ["warn", "consistent"],
+		"@stylistic/ts/member-delimiter-style": "off",
+		"sort-imports": false,
 	},
 	overrides: [
 		{

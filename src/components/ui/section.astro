@@ -2,56 +2,47 @@
 import { twMerge, type ClassNameValue } from "tailwind-merge";
 
 interface Props {
-  pattern?: boolean;
-  className?: ClassNameValue;
-  sectionId: string;
+	pattern?: boolean;
+	className?: ClassNameValue;
+	sectionId: string;
 }
 
 const { pattern, className, sectionId } = Astro.props;
-const currentClass = pattern
-  ? "bg-pattern relative py-10"
-  : "bg-secondary pt-0 relative";
+const currentClass = pattern ? "bg-pattern relative py-10" : "bg-secondary pt-0 relative";
 ---
 
-<section
-  class={`${twMerge(`px-4  ${currentClass} `, className)}`}
-  id={sectionId}
->
-  <!-- shaddow -->
-  {
-    pattern && (
-      <>
-        <header class="top-0 bg-pattern-shadow" />
-        <footer class="bottom-0 rotate-180 bg-pattern-shadow" />
-      </>
-    )
-  }
+<section class={`${twMerge(`px-4  ${currentClass} `, className)}`} id={sectionId}>
+	<!-- shaddow -->
+	{
+		pattern && (
+			<>
+				<header class="bg-pattern-shadow top-0" />
+				<footer class="bg-pattern-shadow bottom-0 rotate-180" />
+			</>
+		)
+	}
 
-  <slot />
+	<slot />
 </section>
 
 <style>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
 
-  @layer utilities {
-    .bg-pattern {
-      background-image: linear-gradient(#bde6fb0e 1px, transparent 1px),
-        linear-gradient(to right, #bde6fb0e 1px, #1e2529 1px);
-      background-size: 20px 20px;
-    }
+	@layer utilities {
+		.bg-pattern {
+			background-image: linear-gradient(#bde6fb0e 1px, transparent 1px),
+				linear-gradient(to right, #bde6fb0e 1px, #1e2529 1px);
+			background-size: 20px 20px;
+		}
 
-    .bg-pattern-shadow {
-      width: 100%;
-      height: 63px;
-      position: absolute;
-      left: 0;
-      background-image: linear-gradient(
-        to bottom,
-        #1e2529d7 50%,
-        #1e252952 100%
-      );
-    }
-  }
+		.bg-pattern-shadow {
+			width: 100%;
+			height: 63px;
+			position: absolute;
+			left: 0;
+			background-image: linear-gradient(to bottom, #1e2529d7 50%, #1e252952 100%);
+		}
+	}
 </style>

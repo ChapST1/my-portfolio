@@ -2,17 +2,14 @@
 import { twMerge, type ClassNameValue } from "tailwind-merge";
 
 interface Props {
-  className?: ClassNameValue;
+	className?: ClassNameValue;
 }
 
 const { className } = Astro.props;
 ---
 
 <span
-  class={`${twMerge(
-    "badge text-xs py-1 px-2 rounded-md bg-[#2a3439] w-[max-content]",
-    className,
-  )}`}
+	class={`${twMerge("badge text-xs py-1 px-2 rounded-md bg-[#2a3439] w-[max-content]", className)}`}
 >
-  <slot />
+	<slot />
 </span>

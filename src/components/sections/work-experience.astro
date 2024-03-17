@@ -1,33 +1,30 @@
 ---
+import StarBlurry from "@components/svg/blurry/star.astro";
 import { siteConfig } from "@public/data/site-config";
 import ContentMaxWidth from "../ui/content-max-width.astro";
 import Paragraph from "../ui/paragraph.astro";
 import Section from "../ui/section.astro";
 import SubTitle from "../ui/sub-title.astro";
 import WorkExperienceGrid from "../work-experience-grid.astro";
-import StarBlurry from "@components/svg/blurry/star.astro";
 
 const {
-  sections: {
-    workExperience: { data, info, title },
-  },
-  links: {
-    experience: { name },
-  },
+	sections: {
+		workExperience: { data, info, title },
+	},
+	links: {
+		experience: { name },
+	},
 } = siteConfig;
 ---
 
-<Section
-  className="z-30 overflow-hidden md:overflow-visible"
-  sectionId={name.toLocaleLowerCase()}
->
-  <ContentMaxWidth>
-    <SubTitle>{title}</SubTitle>
-    <Paragraph>
-      {info}
-    </Paragraph>
+<Section className="z-30 overflow-hidden md:overflow-visible" sectionId={name.toLocaleLowerCase()}>
+	<ContentMaxWidth>
+		<SubTitle>{title}</SubTitle>
+		<Paragraph>
+			{info}
+		</Paragraph>
 
-    <WorkExperienceGrid data={data} />
-  </ContentMaxWidth>
-  <StarBlurry />
+		<WorkExperienceGrid data={data} />
+	</ContentMaxWidth>
+	<StarBlurry />
 </Section>

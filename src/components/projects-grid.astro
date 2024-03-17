@@ -1,59 +1,53 @@
 ---
 import type { siteConfig } from "@public/data/site-config";
+import { icons } from "@public/data/site.icons";
 import Badge from "./ui/badge.astro";
 import Paragraph from "./ui/paragraph.astro";
-import { icons } from "@public/data/site.icons";
 
 interface Props {
-  data: (typeof siteConfig)["sections"]["projects"]["data"];
+	data: (typeof siteConfig)["sections"]["projects"]["data"];
 }
 
 const { data } = Astro.props;
 ---
 
-<section class="grid grid-cols-1 md:grid-cols-2 gap-5">
-  {
-    data.map(({ image, name, stack, info, demo, repo, completed }) => {
-      const projectStatus = completed ? "Completado" : "En desarrollo"
-      const projectStatusStyle = completed ? "bg-[#053318] text-[#45d174]" : "bg-[#331d00] text-[#ff9e00]"
+<section class="grid grid-cols-1 gap-5 md:grid-cols-2">
+	{
+		data.map(({ image, name, stack, info, demo, repo, completed }) => {
+			const projectStatus = completed ? "Completado" : "En desarrollo";
+			const projectStatusStyle = completed
+				? "bg-[#053318] text-[#45d174]"
+				: "bg-[#331d00] text-[#ff9e00]";
 
-      return (
-        <article class="p-4 rounded-md bg-secondary/80 border-2 border-accent group">
-          <picture class="relative block overflow-hidden rounded-md bg-secondary">
-            <img src={image} alt={name} class="mix-blend-exclusion"  />
+			return (
+				<article class="group rounded-md border-2 border-accent bg-secondary/80 p-4">
+					<picture class="relative block overflow-hidden rounded-md bg-secondary">
+						<img src={image} alt={name} class="mix-blend-exclusion" />
 
-            <footer class="bg-secondary/75 w-full absolute duration-300 top-0 h-full opacity-0 group-hover:opacity-100 left-0 flex items-center justify-center gap-3 *:size-11 *:flex *:items-center *:justify-center *:rounded-md *:border-2 *:border-accent hover:*:border-primary hover:*:scale-105 *:duration-300">
-              {repo && (
-                <a
-                  target="_blank"
-                  href={repo}
-                  set:html={icons.github.icon}
-                  class="*:size-7"
-                />
-              )}
-              <a
-                target="_blank"
-                href={demo}
-                set:html={icons.link.icon}
-                class="*:size-7"
-              />
-            </footer>
-          </picture>
-          <div class="py-3">
-            <h3 class="font-bold flex gap-2 py-2 items-center justify-start">
-              <span>{name}</span>
-              <Badge className={`text-xs rounded-full ${projectStatusStyle}`}>{projectStatus}</Badge>
-              </h3>
+						<footer class="absolute left-0 top-0 flex h-full w-full items-center justify-center gap-3 bg-secondary/75 opacity-0 duration-300 *:flex *:size-11 *:items-center *:justify-center *:rounded-md *:border-2 *:border-accent *:duration-300 hover:*:scale-105 hover:*:border-primary group-hover:opacity-100">
+							{repo && (
+								<a target="_blank" href={repo} set:html={icons.github.icon} class="*:size-7" />
+							)}
+							<a target="_blank" href={demo} set:html={icons.link.icon} class="*:size-7" />
+						</footer>
+					</picture>
+					<div class="py-3">
+						<h3 class="flex items-center justify-start gap-2 py-2 font-bold">
+							<span>{name}</span>
+							<Badge className={`rounded-full text-xs ${projectStatusStyle}`}>
+								{projectStatus}
+							</Badge>
+						</h3>
 
-            <Paragraph>{info}</Paragraph>
-          </div>
-          <footer class="flex gap-3 flex-wrap justify-start">
-            {stack.map((name) => {
-              return <Badge>{name}</Badge>;
-            })}
-          </footer>
-        </article>
-      );
-    })
-  }
+						<Paragraph>{info}</Paragraph>
+					</div>
+					<footer class="flex flex-wrap justify-start gap-3">
+						{stack.map((name) => {
+							return <Badge>{name}</Badge>;
+						})}
+					</footer>
+				</article>
+			);
+		})
+	}
 </section>

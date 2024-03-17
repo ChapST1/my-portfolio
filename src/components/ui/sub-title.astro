@@ -1,17 +1,18 @@
 ---
 import { twMerge, type ClassNameValue } from "tailwind-merge";
+
 interface Props {
-  className?: ClassNameValue;
+	className?: ClassNameValue;
 }
 
 const { className } = Astro.props;
 ---
 
 <h2
-  class={`${twMerge(
-    "text-primary text-2xl uppercase font-semibold relative z-50 text-balance",
-    className,
-  )}`}
+	class={`${twMerge(
+		"text-primary text-2xl uppercase font-semibold relative z-50 text-balance",
+		className
+	)}`}
 >
-  <slot />
+	<slot />
 </h2>
