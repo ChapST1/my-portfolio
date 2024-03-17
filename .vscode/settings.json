@@ -26,6 +26,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.documentSelectors": ["**/*.astro"],
+  "tailwindCSS.classAttributes": ["class", "className", "ngClass", "class:list"],
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

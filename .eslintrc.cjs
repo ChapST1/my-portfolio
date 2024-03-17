@@ -1,4 +1,4 @@
-process.env.ESLINT_TSCONFIG = "tsconfig.json"
+process.env.ESLINT_TSCONFIG = "tsconfig.json";
 
 /**
  * @type {import("eslint").Linter.Config}
@@ -23,7 +23,7 @@ module.exports = {
 		"eol-last": "off",
 		"jsx-quotes": ["warn", "prefer-double"],
 		"quotes": ["warn", "double"],
-		"semi": ["warn", "never"],
+		// "semi": ["warn", "never"],
 		"@stylistic/js/no-tabs": "off",
 		"@stylistic/ts/indent": "off",
 		"no-constant-binary-expression": "warn",
@@ -66,7 +66,7 @@ module.exports = {
 				"astro/no-unused-define-vars-in-style": "warn",
 				"astro/no-unused-css-selector": "off",
 				"astro/prefer-class-list-directive": "warn",
-				"astro/semi": ["warn", "never"],
+				// "astro/semi": ["warn", "never"],
 				"astro/jsx-a11y/anchor-is-valid": "warn",
 				"@stylistic/ts/indent": "off",
 			},
@@ -78,4 +78,4 @@ module.exports = {
 			parser: "@typescript-eslint/parser",
 		},
 	],
-}
+};
