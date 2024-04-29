@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "src/lib/utils/cn";
+
+const heroSocialMediaContainer = cva("heroSocialMediaContainer", {
+	variants: {
+		mode: {
+			dev: "",
+			uxui: "",
+		},
+	},
+	compoundVariants: [{ mode: "dev" }],
+});
+
+interface Props extends HTMLAttributes<"div">, VariantProps<typeof heroSocialMediaContainer> {}
+
+const { mode = "dev", ...props } = Astro.props;
+---
+
+<div
+	class={cn(
+		`flex items-center justify-center gap-2`,
+		heroSocialMediaContainer({ mode }),
+		Astro.props.class
+	)}
+	{...props}
+>
+	<slot />
+</div>

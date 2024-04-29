@@ -1,0 +1,175 @@
+---
+import Badge from "@components/ui/badge.astro";
+import Paragraph from "@components/ui/paragraph.astro";
+import Title from "@components/ui/title.astro";
+import { siteConfig } from "@public/data/site-config";
+import clsx from "clsx";
+
+const {
+	sections: {
+		projects: { info, title, data },
+	},
+} = siteConfig;
+---
+
+<section>
+	<Title>{title}</Title>
+	<Paragraph>{info}</Paragraph>
+
+	<div class="mt-[30px] grid w-full grid-cols-1 gap-4 px-[10px] md:grid-cols-3">
+		{
+			data.map(({ demo, image, info, name, repo, stack, status }) => {
+				const isCompleted = status === "Finalizado";
+				const isPaused = status === "Pausado";
+				const isDevelopment = status === "En Desarrollo";
+
+				const badgeStyle = clsx({
+					success: isCompleted,
+					info: isPaused,
+					error: isDevelopment,
+				}) as "info" | "success" | "error"; // badge-Types
+
+				return (
+					<div class="rounded-[20px] border-2 border-bunker-950 bg-bunker-1000 p-[10px]">
+						<div class="item-project">
+							<picture class="relative block  w-full overflow-hidden rounded-t-[10px] ">
+								<img src={image} class="h-full w-full object-cover" alt="" />
+							</picture>
+							<div class="flex items-center justify-end">
+								<Badge variant={badgeStyle} size="md" class="block">
+									{status}
+								</Badge>
+							</div>
+						</div>
+
+						<div class="flex flex-col items-start gap-[22px]">
+							<div>
+								<h2 class="text-base text-bunker-50">{name}</h2>
+								<p class="text-[14px] font-light text-bunker-500">{info}</p>
+							</div>
+							<div class="stack-container relative flex h-12 w-full items-start justify-start  overflow-x-auto py-2">
+								{stack.map((item) => (
+									<Badge size="sm" class="mr-[3px] block text-nowrap last:mr-0">
+										{item}
+									</Badge>
+								))}
+							</div>
+							<div class=" flex w-full items-center justify-center gap-[5px] *:flex *:items-center *:justify-center *:gap-[5px] *:rounded-[10px] *:border-2 *:px-2 *:py-2 *:text-[13px]">
+								<a
+									href={demo}
+									target="_blank"
+									class="flex-grow border-transparent bg-bunker-950 text-bunker-50 duration-300"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+									>
+										<path
+											fill="currentColor"
+											d="M11 17H7q-2.075 0-3.537-1.463T2 12q0-2.075 1.463-3.537T7 7h4v2H7q-1.25 0-2.125.875T4 12q0 1.25.875 2.125T7 15h4zm-3-4v-2h8v2zm5 4v-2h4q1.25 0 2.125-.875T20 12q0-1.25-.875-2.125T17 9h-4V7h4q2.075 0 3.538 1.463T22 12q0 2.075-1.463 3.538T17 17z"
+										/>
+									</svg>
+									Demo
+								</a>
+								{repo && (
+									<a
+										href={repo}
+										target="_blank"
+										class="w-max border-bunker-950 bg-transparent text-bunker-400 duration-300 hover:text-bunker-50"
+									>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+										>
+											<path
+												fill="currentColor"
+												d="M4.825 12.025L8.7 15.9q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T2.426 12q0-.2.063-.375T2.7 11.3l4.6-4.6q.3-.3.713-.3t.712.3q.3.3.3.713t-.3.712zm14.35-.05L15.3 8.1q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375q0 .2-.062.375t-.213.325l-4.6 4.6q-.3.3-.7.288t-.7-.313q-.3-.3-.3-.712t.3-.713z"
+											/>
+										</svg>
+										Repositorio
+									</a>
+								)}
+							</div>
+						</div>
+					</div>
+				);
+			})
+		}
+	</div>
+</section>
+
+<style scoped>
+	.item-project picture::after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-image: linear-gradient(transparent -10%, theme("colors.bunker.1000") 100%);
+	}
+
+	.stack-container::-webkit-scrollbar {
+		height: 3px;
+	}
+	.stack-container::-webkit-scrollbar-thumb {
+		background-color: theme("colors.bunker.950");
+	}
+
+	/* shadow -> https://scroll-driven-animations.style/demos/scroll-shadows/css/ */
+	.stack-container {
+		scroll-timeline: --scroll-timeline x;
+		animation: detect-scroll;
+		animation-timeline: --scroll-timeline;
+		animation-fill-mode: none;
+	}
+
+	.stack-container::after,
+	.stack-container::before {
+		content: "";
+		min-height: 100%;
+		pointer-events: none;
+		position: sticky;
+		right: -1px;
+	}
+	.stack-container::before {
+		left: -1px;
+		background-image: linear-gradient(to left, transparent, theme("colors.bunker.1000"));
+		animation-range: cover;
+	}
+	.stack-container::after {
+		background-image: linear-gradient(to right, transparent, theme("colors.bunker.1000"));
+		animation-direction: reverse;
+		animation-range: cover;
+	}
+
+	.stack-container::after,
+	.stack-container::before {
+		animation-name: reveal;
+		animation-timeline: --scroll-timeline;
+		animation-fill-mode: both;
+
+		--visibility-if-can-scroll: var(--can-scroll) visible;
+		--visibility-if-cant-scroll: hidden;
+		visibility: var(--visibility-if-can-scroll, var(--visibility-if-cant-scroll));
+	}
+	@keyframes detect-scroll {
+		from,
+		to {
+			--can-scroll: ;
+		}
+	}
+
+	@keyframes reveal {
+		0% {
+			min-width: 0.1px;
+		}
+		100% {
+			min-width: 30px;
+		}
+	}
+</style>

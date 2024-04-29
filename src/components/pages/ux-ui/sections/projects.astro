@@ -1,0 +1,97 @@
+---
+import { siteConfigUxUi } from "@public/data/site-config";
+const { projects } = siteConfigUxUi;
+---
+
+<section
+	class="relative z-10 grid grid-cols-1 gap-x-[10px] gap-y-[20px] md:grid-cols-2 lg:grid-cols-3"
+>
+	{
+		projects.map(({ image, name }, index) => (
+			<>
+				<a
+					href={`#modal-${index}`}
+					id={`#image-${index}`}
+					class="project-item group flex flex-col gap-[15px] rounded-[20px] border-2 border-bunker-ux-200 bg-bunker-ux-50 p-[10px]"
+				>
+					<picture class="relative block overflow-hidden rounded-[10px]">
+						<img src={image} alt={name} class="h-full w-full object-cover" />
+					</picture>
+					<footer class="flex items-center justify-between rounded-[10px] bg-bunker-ux-100 px-[5px] py-[7px]">
+						<h4 class="font-semibold text-bunker-ux-700">{name}</h4>
+
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="18"
+							height="18"
+							class="text-bunker-ux-400 duration-300 group-hover:text-bunker-700"
+							viewBox="0 0 24 24"
+						>
+							<path
+								fill="none"
+								stroke="currentColor"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="1.5"
+								d="M9 9L4 4m0 0v4m0-4h4m7 5l5-5m0 0v4m0-4h-4M9 15l-5 5m0 0v-4m0 4h4m7-5l5 5m0 0v-4m0 4h-4"
+							/>
+						</svg>
+					</footer>
+				</a>
+
+				{/* modal */}
+				<article
+					id={`modal-${index}`}
+					class="dialog invisible fixed bottom-0 left-0 z-20 flex h-dvh w-full flex-col bg-bunker-ux-100/50 opacity-0 duration-300"
+				>
+					{/* overlay - click */}
+					<a href={`#image-${index}`} class="fixed left-0 top-0 h-full w-full" />
+
+					{/* content here... */}
+					<div class=" linear fixed bottom-0 z-[25] flex h-full w-full translate-y-4 flex-col items-start overflow-y-auto border-t border-bunker-300 bg-uxui-noise pb-28 duration-300 md:h-[90dvh] md:translate-y-7">
+						<article class="mx-auto w-full px-3 md:max-w-screen-lg lg:px-0">
+							<header class="flex items-center justify-between">
+								<h2 class="py-5 text-center text-lg text-bunker-ux-900 md:text-2xl">{name}</h2>
+								<a
+									href={`#image-${index}`}
+									class="flex size-8 items-center justify-center rounded-full border-bunker-ux-200 bg-bunker-ux-100 text-bunker-ux-900 duration-300 hover:text-bunker-ux-1000"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+									>
+										<path
+											fill="currentColor"
+											d="m4 10l-.707.707L2.586 10l.707-.707zm17 8a1 1 0 1 1-2 0zM8.293 15.707l-5-5l1.414-1.414l5 5zm-5-6.414l5-5l1.414 1.414l-5 5zM4 9h10v2H4zm17 7v2h-2v-2zm-7-7a7 7 0 0 1 7 7h-2a5 5 0 0 0-5-5z"
+										/>
+									</svg>
+								</a>
+							</header>
+
+							<div class="flex flex-col items-start gap-4">
+								<img src={image} alt={name} class="m-auto block w-full rounded-sm" />
+							</div>
+						</article>
+					</div>
+				</article>
+			</>
+		))
+	}
+</section>
+
+<style scoped>
+	body:has(.dialog:target) {
+		overflow: hidden;
+	}
+
+	.dialog:target {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.dialog:target div {
+		transform: translateY(0);
+	}
+</style>

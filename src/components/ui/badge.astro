@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils/cn";
+
+const badge = cva("badge", {
+	variants: {
+		variant: {
+			info: ["bg-[#8F705F]", "border-[#734126]", "text-[#734126]"],
+			error: ["bg-[#CE7C7C]", "border-[#983A3A]", "text-[#983A3A]"],
+			success: ["bg-[#6DA165]", "border-[#2A4E2B]", "text-[#2A4E2B]"],
+			default: ["bg-bunker-900", "border-bunker-800", "text-bunker-100 "],
+		},
+		size: {
+			sm: ["py-1", "px-2", "text-xs"],
+			md: ["py-1", "px-6", "text-base", "rounded-full"],
+			default: ["py-1", "px-2", "text-xs"],
+		},
+	},
+	compoundVariants: [{ variant: "default", size: "default" }],
+});
+
+interface Props extends HTMLAttributes<"span">, VariantProps<typeof badge> {}
+
+const { variant = "default", size = "default" } = Astro.props;
+---
+
+<span
+	class={cn(` rounded-md border-2 w-[max-content]`, badge({ variant, size }), Astro.props.class)}
+>
+	<slot />
+</span>

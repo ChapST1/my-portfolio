@@ -1,0 +1,43 @@
+---
+import Paragraph from "@components/ui/paragraph.astro";
+import Title from "@components/ui/title.astro";
+import { siteConfig } from "@public/data/site-config";
+
+const {
+	sections: {
+		skills: { data, info, title },
+	},
+} = siteConfig;
+
+const sections = Object.keys(data) as Array<keyof typeof data>;
+---
+
+<section>
+	<Title>{title}</Title>
+	<Paragraph>
+		{info}
+	</Paragraph>
+
+	<div class="mt-8 flex flex-col items-start gap-8 px-[10px]">
+		{
+			sections.map((item) => {
+				const currentSections = data[item];
+				const { title, data: sectionData } = currentSections;
+				return (
+					<div class="flex w-full flex-col items-start gap-3">
+						<h4 class="text-xl font-bold text-bunker-400">{title}</h4>
+
+						<div class="grid grid-cols-2 gap-[10px] sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 ">
+							{sectionData.map(({ icon, name }, index) => (
+								<div class="flex size-[100px] flex-col items-center justify-center gap-[5px] rounded-[10px] border-2 border-bunker-950">
+									<Fragment set:html={icon} />
+									<span class="text-center text-xs font-bold text-bunker-400">{name}</span>
+								</div>
+							))}
+						</div>
+					</div>
+				);
+			})
+		}
+	</div>
+</section>

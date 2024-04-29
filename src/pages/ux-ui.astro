@@ -1,0 +1,20 @@
+---
+import Navbar from "@components/global/Navbar.astro";
+import Separator from "@components/ui/separator.astro";
+import LayoutUxUi from "src/layouts/LayoutUxUx.astro";
+
+import Hero from "@components/pages/ux-ui/sections/Hero.astro";
+import Projects from "@components/pages/ux-ui/sections/projects.astro";
+import { siteConfigUxUi } from "@public/data/site-config";
+
+const { ownerOccupation, ownerInfo } = siteConfigUxUi;
+---
+
+<LayoutUxUi title="Disenos ux-ui">
+	<main class="min-h-dvh">
+		<Hero />
+		<Separator mode="uxui" />
+		<Projects />
+	</main>
+	<Navbar mode="uxui" />
+</LayoutUxUi>

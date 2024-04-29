@@ -1,0 +1,41 @@
+---
+import Badge from "@components/ui/badge.astro";
+import Paragraph from "@components/ui/paragraph.astro";
+import Title from "@components/ui/title.astro";
+
+import { siteConfig } from "@public/data/site-config";
+const {
+	sections: {
+		workExperience: { data, info, title },
+	},
+} = siteConfig;
+---
+
+<section>
+	<Title>{title}</Title>
+	<Paragraph>
+		{info}
+	</Paragraph>
+
+	<div class="px-[10px] pt-[30px]">
+		{
+			data.map(({ companyLink, companyName, job, jobInfo, stack, time }) => (
+				<article>
+					<h4 class="text-xl font-medium text-bunker-300">
+						{job} - <span class="font-light">{time}</span>
+					</h4>
+					<a href={companyLink} target="_blank" class="text-[13px] text-bunker-600 hover:underline">
+						Empresa ~ {companyName}
+					</a>
+					<Paragraph class="mt-3">{jobInfo}</Paragraph>
+
+					<div class="flex items-center justify-start gap-3 py-3">
+						{stack.data.map((item) => (
+							<Badge>{item}</Badge>
+						))}
+					</div>
+				</article>
+			))
+		}
+	</div>
+</section>

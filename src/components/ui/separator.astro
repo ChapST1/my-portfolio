@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
+
+interface Props extends HTMLAttributes<"div"> {}
+const props = Astro.props;
+
+interface Props {
+	mode: "dev" | "uxui";
+}
+const { mode = "dev" } = Astro.props;
+
+const isModeDev = mode === "dev";
+const isModeUx = mode === "uxui";
+
+const separatorStyle = clsx({
+	"bg-bunker-950": isModeDev,
+	"bg-bunker-ux-200": isModeUx,
+});
+---
+
+<div
+	aria-hidden="true"
+	aria-label="separator"
+	class={twMerge(
+		`w-[80%] h-[2px] rounded-[31px]  my-[60px] mx-auto ${separatorStyle}`,
+		props.class
+	)}
+>
+</div>

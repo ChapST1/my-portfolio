@@ -1,0 +1,23 @@
+---
+import Navbar from "@components/global/Navbar.astro";
+import Projects from "@components/pages/home/sections/projects.astro";
+import Skills from "@components/pages/home/sections/skills.astro";
+import WorkExperience from "@components/pages/home/sections/work-experience.astro";
+import Separator from "@components/ui/separator.astro";
+import Layout from "../layouts/Layout.astro";
+
+import Hero from "@components/pages/home/sections/Hero.astro";
+---
+
+<Layout title="Mi Portafolio">
+	<main class="min-h-dvh">
+		<Hero />
+		<Separator mode="dev" />
+		<div class="flex flex-col items-start gap-[50px]">
+			<WorkExperience />
+			<Skills />
+			<Projects />
+		</div>
+	</main>
+	<Navbar mode="dev" />
+</Layout>

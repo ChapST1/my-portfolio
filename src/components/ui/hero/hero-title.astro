@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "src/lib/utils/cn";
+
+const heroTitle = cva("heroTitle", {
+	variants: {
+		mode: {
+			dev: ["text-bunker-100"],
+			uxui: "text-bunker-ux-800",
+		},
+	},
+	compoundVariants: [{ mode: "dev" }],
+});
+
+interface Props extends HTMLAttributes<"h1">, VariantProps<typeof heroTitle> {}
+
+const { mode = "dev" } = Astro.props;
+---
+
+<h1 class={cn(`text-5xl font-bold md:text-8xl`, heroTitle({ mode }), Astro.props.class)}>
+	<slot />
+</h1>
+
+<style scoped>
+	h1 {
+		font-family: "Montagu Slab Variable", serif;
+	}
+</style>

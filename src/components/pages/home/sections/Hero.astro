@@ -1,0 +1,30 @@
+---
+import HeroButton from "@components/ui/hero/hero-button.astro";
+import HeroContainer from "@components/ui/hero/hero-container.astro";
+import HeroParagraph from "@components/ui/hero/hero-paragraph.astro";
+import HeroSocialMediaItem from "@components/ui/hero/hero-social-media-item.astro";
+import HeroSocialMedia from "@components/ui/hero/hero-social-media.astro";
+import HeroSubtitle from "@components/ui/hero/hero-subtitle.astro";
+import HeroTitle from "@components/ui/hero/hero-title.astro";
+
+import { siteConfig } from "@public/data/site-config";
+
+const { owner, ownerInfo, ownerOccupation, ownerSocialMedia, cvLink, cvTitle } = siteConfig;
+---
+
+<HeroContainer>
+	<HeroTitle>{owner}</HeroTitle>
+	<HeroSubtitle style="view-transition-name: title">{ownerOccupation}</HeroSubtitle>
+	<HeroSocialMedia>
+		{
+			ownerSocialMedia.map(({ icon, name, link }) => (
+				<HeroSocialMediaItem href={link} target="_blank" set:html={icon} title={name} />
+			))
+		}
+	</HeroSocialMedia>
+	<HeroParagraph>
+		{ownerInfo}
+	</HeroParagraph>
+
+	<HeroButton href={cvLink} target="_blank">{cvTitle}</HeroButton>
+</HeroContainer>
