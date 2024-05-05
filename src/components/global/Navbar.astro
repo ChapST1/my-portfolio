@@ -13,7 +13,7 @@ const isModeUx = mode === "uxui";
 
 const navbarStyle = clsx({
 	"bg-bunker-1000 bg-dev-noise border-bunker-950": isModeDev,
-	"bg-bunker-ux-1000 bg-uxui-noise border-bunker-ux-200": isModeUx,
+	"bg-bunker-ux-100 bg-uxui-noise border-bunker-ux-200": isModeUx,
 });
 
 const navbarTitleStyle = clsx({
@@ -38,7 +38,7 @@ const navbarSwitchBallStyle = clsx({
 ---
 
 <header
-	class={`sticky bottom-4 m-auto flex h-16 w-[90%] z-50 md:w-[80%] items-center justify-between rounded-full border-2 px-5 ${navbarStyle}`}
+	class={`sticky bottom-4 m-auto flex h-16 w-[90%] z-[10] md:w-[80%] items-center justify-between rounded-full border-2 px-5 ${navbarStyle}`}
 >
 	<a href="/">
 		<h2 class={`text-xl font-bold ${navbarTitleStyle}`}>ChapST1</h2>

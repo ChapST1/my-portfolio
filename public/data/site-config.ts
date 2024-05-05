@@ -274,32 +274,83 @@ export const siteConfigUxUi = {
 
 	projects: [
 		{
+			name: "Tv App",
+			images: [
+				"https://images2.imgbox.com/d6/81/pVVrBx4K_o.png",
+				"https://images2.imgbox.com/92/4e/RDSB0aW5_o.png",
+				"https://images2.imgbox.com/e7/55/C38Q8dcN_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/e7/55/C38Q8dcN_t.png",
+				"https://thumbs2.imgbox.com/d6/81/pVVrBx4K_t.png",
+				"https://thumbs2.imgbox.com/92/4e/RDSB0aW5_t.png",
+			],
+		},
+		{
 			name: "Media Player",
-			image: "https://pbs.twimg.com/media/GKyHsaeXkAAsk5M?format=jpg&name=medium",
-		},
-		{
-			name: "404 Not Found",
-			image: "https://pbs.twimg.com/media/GKrpqLyXQAEmBbf?format=jpg&name=medium",
-		},
-		{
-			name: "Share...",
-			image: "https://pbs.twimg.com/media/GK3HnGoWIAAKs-Z?format=jpg&name=medium",
+			images: [
+				"https://images2.imgbox.com/11/d7/dpNSG845_o.png",
+				"https://images2.imgbox.com/5e/72/uEMg24xY_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/5e/72/uEMg24xY_t.png",
+				"https://thumbs2.imgbox.com/11/d7/dpNSG845_t.png",
+			],
 		},
 		{
 			name: "Chat Message",
-			image: "https://pbs.twimg.com/media/GLZ6sQnWkAA7maE?format=jpg&name=medium",
+			images: [
+				"https://images2.imgbox.com/ab/ed/CVuLt8uU_o.png",
+				"https://images2.imgbox.com/56/7b/uju0sJ6y_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/ab/ed/CVuLt8uU_t.png",
+				"https://thumbs2.imgbox.com/56/7b/uju0sJ6y_t.png",
+			],
+		},
+		{
+			name: "Share Post",
+			images: [
+				"https://images2.imgbox.com/55/4b/TBjmtuqY_o.png",
+				"https://images2.imgbox.com/8a/ef/oydKC17a_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/8a/ef/oydKC17a_t.png",
+				"https://thumbs2.imgbox.com/55/4b/TBjmtuqY_t.png",
+			],
 		},
 		{
 			name: "Wallpaper Hub",
-			image: "https://pbs.twimg.com/media/GLv1ZSNWgAAKEpy?format=jpg&name=medium",
-		},
-		{
-			name: "Onboarding",
-			image: "https://pbs.twimg.com/media/GL-Xv3bXkAAdkFu?format=jpg&name=medium",
+			images: [
+				"https://images2.imgbox.com/6d/86/0e3GUx85_o.png",
+				"https://images2.imgbox.com/0d/8c/LDd606Uw_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/6d/86/0e3GUx85_t.png",
+				"https://thumbs2.imgbox.com/0d/8c/LDd606Uw_t.png",
+			],
 		},
 		{
 			name: "Boarding Pass",
-			image: "https://pbs.twimg.com/media/GL_p5YlXsAApQA-?format=jpg&name=medium",
+			images: [
+				"https://images2.imgbox.com/16/73/TGFK8fzN_o.png",
+				"https://images2.imgbox.com/83/31/CmCIol1N_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/16/73/TGFK8fzN_t.png",
+				"https://thumbs2.imgbox.com/83/31/CmCIol1N_t.png",
+			],
+		},
+		{
+			name: "Onboarding",
+			images: [
+				"https://images2.imgbox.com/3d/91/2dKdy0O8_o.png",
+				"https://images2.imgbox.com/b2/79/g58yFGFJ_o.png",
+			],
+			thumbnails: [
+				"https://thumbs2.imgbox.com/b2/79/g58yFGFJ_t.png",
+				"https://thumbs2.imgbox.com/3d/91/2dKdy0O8_t.png",
+			],
 		},
 	],
 };

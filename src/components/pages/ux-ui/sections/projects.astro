@@ -3,57 +3,80 @@ import { siteConfigUxUi } from "@public/data/site-config";
 const { projects } = siteConfigUxUi;
 ---
 
-<section
-	class="relative z-10 grid grid-cols-1 gap-x-[10px] gap-y-[20px] md:grid-cols-2 lg:grid-cols-3"
->
+<section class="relative grid grid-cols-1 gap-x-[10px] gap-y-[20px] md:grid-cols-2 lg:grid-cols-3">
 	{
-		projects.map(({ image, name }, index) => (
-			<>
-				<a
-					href={`#modal-${index}`}
-					id={`#image-${index}`}
-					class="project-item group flex flex-col gap-[15px] rounded-[20px] border-2 border-bunker-ux-200 bg-bunker-ux-50 p-[10px]"
-				>
-					<picture class="relative block overflow-hidden rounded-[10px]">
-						<img src={image} alt={name} class="h-full w-full object-cover" />
-					</picture>
-					<footer class="flex items-center justify-between rounded-[10px] bg-bunker-ux-100 px-[5px] py-[7px]">
-						<h4 class="font-semibold text-bunker-ux-700">{name}</h4>
+		projects.map(({ images, name, thumbnails }, index) => {
+			const itemId = `#${name.toLocaleLowerCase().split(" ").join("-")}`;
 
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="18"
-							height="18"
-							class="text-bunker-ux-400 duration-300 group-hover:text-bunker-700"
-							viewBox="0 0 24 24"
-						>
-							<path
-								fill="none"
-								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
-								d="M9 9L4 4m0 0v4m0-4h4m7 5l5-5m0 0v4m0-4h-4M9 15l-5 5m0 0v-4m0 4h4m7-5l5 5m0 0v-4m0 4h-4"
-							/>
-						</svg>
-					</footer>
-				</a>
+			return (
+				<div id={itemId}>
+					<a
+						href={`#modal-${index + 1}`}
+						class="project-item group z-10 flex flex-col gap-[15px] rounded-[20px] border-2 border-bunker-ux-200 bg-bunker-ux-50 p-[10px]"
+					>
+						<picture class="relative flex h-56 snap-x snap-mandatory overflow-y-auto rounded-[10px] md:overflow-hidden">
+							{thumbnails.map((item, index) => (
+								<img
+									src={item}
+									alt={`${name} - imagen ${index}`}
+									loading="lazy"
+									class="block h-full w-full min-w-full snap-center object-cover object-top"
+									decoding="async"
+								/>
+							))}
+						</picture>
+						<footer class="flex items-center justify-between rounded-[10px] bg-bunker-ux-100 px-[5px] py-[7px]">
+							<h4 class="font-semibold text-bunker-ux-700">{name}</h4>
 
-				{/* modal */}
-				<article
-					id={`modal-${index}`}
-					class="dialog invisible fixed bottom-0 left-0 z-20 flex h-dvh w-full flex-col bg-bunker-ux-100/50 opacity-0 duration-300"
-				>
-					{/* overlay - click */}
-					<a href={`#image-${index}`} class="fixed left-0 top-0 h-full w-full" />
+							<div class="flex items-center justify-center gap-[5px]">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									class="text-bunker-ux-400 duration-300 group-hover:text-bunker-700"
+								>
+									<>
+										<path
+											fill="currentColor"
+											d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2M8 16V4h12l.002 12z"
+										/>
+										<path fill="currentColor" d="M4 8H2v12c0 1.103.897 2 2 2h12v-2H4z" />
+										<path fill="currentColor" d="m12 12l-1-1l-2 3h10l-4-6z" />
+									</>
+								</svg>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									class="text-bunker-ux-400 duration-300 group-hover:text-bunker-700"
+									viewBox="0 0 24 24"
+								>
+									<path
+										fill="none"
+										stroke="currentColor"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.5"
+										d="M9 9L4 4m0 0v4m0-4h4m7 5l5-5m0 0v4m0-4h-4M9 15l-5 5m0 0v-4m0 4h4m7-5l5 5m0 0v-4m0 4h-4"
+									/>
+								</svg>
+							</div>
+						</footer>
+					</a>
 
-					{/* content here... */}
-					<div class=" linear fixed bottom-0 z-[25] flex h-full w-full translate-y-4 flex-col items-start overflow-y-auto border-t border-bunker-300 bg-uxui-noise pb-28 duration-300 md:h-[90dvh] md:translate-y-7">
-						<article class="mx-auto w-full px-3 md:max-w-screen-lg lg:px-0">
+					{/* modal */}
+					<dialog
+						id={`modal-${index + 1}`}
+						class="dialog fixed left-0 top-0 z-[30] h-dvh w-full translate-y-0 overflow-y-auto border-bunker-ux-200 bg-bunker-ux-200 bg-uxui-noise px-3 duration-300 target:block md:top-[50%] md:m-0 md:ml-auto md:h-dvh md:w-[85%] md:translate-y-[-50%] md:border-l-2"
+					>
+						<article class="w-full">
 							<header class="flex items-center justify-between">
-								<h2 class="py-5 text-center text-lg text-bunker-ux-900 md:text-2xl">{name}</h2>
+								<h2 class="py-5 text-center text-lg text-bunker-ux-900 md:py-2 md:text-2xl">
+									{name}
+								</h2>
 								<a
-									href={`#image-${index}`}
+									href={itemId}
 									class="flex size-8 items-center justify-center rounded-full border-bunker-ux-200 bg-bunker-ux-100 text-bunker-ux-900 duration-300 hover:text-bunker-ux-1000"
 								>
 									<svg
@@ -71,13 +94,27 @@ const { projects } = siteConfigUxUi;
 							</header>
 
 							<div class="flex flex-col items-start gap-4">
-								<img src={image} alt={name} class="m-auto block w-full rounded-sm" />
+								{images.map((item) => (
+									<img
+										src={item}
+										alt={name}
+										loading="lazy"
+										class="m-auto block w-full rounded-sm"
+										decoding="async"
+									/>
+								))}
 							</div>
 						</article>
-					</div>
-				</article>
-			</>
-		))
+					</dialog>
+
+					{/* modal overlay (bg) */}
+					<a
+						href={itemId}
+						class="overlay invisible fixed left-0 top-0 z-20 block h-full w-full items-start justify-center bg-bunker-ux-300/50 opacity-0"
+					/>
+				</div>
+			);
+		})
 	}
 </section>
 
@@ -86,12 +123,20 @@ const { projects } = siteConfigUxUi;
 		overflow: hidden;
 	}
 
-	.dialog:target {
-		visibility: visible;
-		opacity: 1;
+	/* @see https://developer.chrome.com/blog/entry-exit-animations */
+	@starting-style {
+		.overlay {
+			@apply bg-transparent;
+		}
+
+		.dialog:target {
+			translate: 0 30px;
+		}
 	}
 
-	.dialog:target div {
-		transform: translateY(0);
+	.dialog:target ~ .overlay {
+		opacity: 1;
+		visibility: visible;
+		transition: 0.3s;
 	}
 </style>

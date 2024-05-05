@@ -1,4 +1,5 @@
 ---
+import Footer from "@components/pages/ux-ui/footer.astro";
 import "@fontsource-variable/montagu-slab";
 
 import "@fontsource/mukta-vaani/200.css";
@@ -26,6 +27,7 @@ const { title } = Astro.props;
 	</head>
 	<body class="m-auto w-full bg-bunker-ux-100 px-3 py-[30px] md:max-w-screen-lg md:px-3 lg:px-0">
 		<slot />
+		<Footer />
 		<style is:global>
 			:root {
 				color-scheme: light;
@@ -40,6 +42,13 @@ const { title } = Astro.props;
 				background-image: url("/bg/noise-uxui.png");
 				background-repeat: repeat;
 				font-family: "Mukta Vaani", sans-serif;
+			}
+
+			@keyframes detect-scroll {
+				from,
+				to {
+					--can-scroll: ;
+				}
 			}
 		</style>
 	</body>

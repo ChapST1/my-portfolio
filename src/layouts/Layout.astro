@@ -25,7 +25,9 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="m-auto w-full bg-bunker-1000 px-3 py-[30px] md:max-w-screen-lg md:px-3 lg:px-0">
+	<body
+		class="m-auto w-full bg-bunker-1000 bg-dev-noise px-3 py-[30px] md:max-w-screen-lg md:px-3 lg:px-0"
+	>
 		<slot />
 		<style is:global>
 			:root {
@@ -38,9 +40,15 @@ const { title } = Astro.props;
 			}
 
 			body {
-				background-image: url("/bg/noise.png");
 				background-repeat: repeat;
 				font-family: "Mukta Vaani", sans-serif;
+			}
+
+			@keyframes detect-scroll {
+				from,
+				to {
+					--can-scroll: ;
+				}
 			}
 		</style>
 	</body>

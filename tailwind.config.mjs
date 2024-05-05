@@ -3,7 +3,7 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		extend: {
-			colors: {
+			"colors": {
 				"bunker": {
 					50: "#f7f7f8",
 					100: "#eeeef0",
@@ -33,9 +33,21 @@ export default {
 					1000: "#0E0D11",
 				},
 			},
-			backgroundImage: {
+			"backgroundImage": {
+				// "dev-noise": "url('/bg/noise.png')",
 				"dev-noise": "url('/bg/noise.png')",
 				"uxui-noise": "url('/bg/noise-uxui.png')",
+			},
+			"animation": {
+				"fade-in": "fade-in 0.6s ease-in",
+			},
+			"fade-in": {
+				"0%": {
+					opacity: "0",
+				},
+				"100%": {
+					opacity: "1",
+				},
 			},
 		},
 	},

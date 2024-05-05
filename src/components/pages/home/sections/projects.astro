@@ -31,10 +31,14 @@ const {
 
 				return (
 					<div class="rounded-[20px] border-2 border-bunker-950 bg-bunker-1000 p-[10px]">
+						{/* project picture */}
 						<div class="item-project">
+							{/* Project image */}
 							<picture class="relative block  w-full overflow-hidden rounded-t-[10px] ">
 								<img src={image} class="h-full w-full object-cover" alt="" />
 							</picture>
+
+							{/* Project status */}
 							<div class="flex items-center justify-end">
 								<Badge variant={badgeStyle} size="md" class="block">
 									{status}
@@ -42,12 +46,13 @@ const {
 							</div>
 						</div>
 
+						{/* project Info */}
 						<div class="flex flex-col items-start gap-[22px]">
 							<div>
 								<h2 class="text-base text-bunker-50">{name}</h2>
 								<p class="text-[14px] font-light text-bunker-500">{info}</p>
 							</div>
-							<div class="stack-container relative flex h-12 w-full items-start justify-start  overflow-x-auto py-2">
+							<div class="stack-container relative flex h-[55px] w-full items-start justify-start overflow-x-auto overflow-y-hidden py-2">
 								{stack.map((item) => (
 									<Badge size="sm" class="mr-[3px] block text-nowrap last:mr-0">
 										{item}
@@ -113,11 +118,9 @@ const {
 		background-image: linear-gradient(transparent -10%, theme("colors.bunker.1000") 100%);
 	}
 
-	.stack-container::-webkit-scrollbar {
-		height: 3px;
-	}
-	.stack-container::-webkit-scrollbar-thumb {
-		background-color: theme("colors.bunker.950");
+	.stack-container {
+		scrollbar-width: thin;
+		scrollbar-color: theme("colors.bunker.950") theme("colors.bunker.1000");
 	}
 
 	/* shadow -> https://scroll-driven-animations.style/demos/scroll-shadows/css/ */
@@ -155,13 +158,8 @@ const {
 
 		--visibility-if-can-scroll: var(--can-scroll) visible;
 		--visibility-if-cant-scroll: hidden;
+
 		visibility: var(--visibility-if-can-scroll, var(--visibility-if-cant-scroll));
-	}
-	@keyframes detect-scroll {
-		from,
-		to {
-			--can-scroll: ;
-		}
 	}
 
 	@keyframes reveal {
